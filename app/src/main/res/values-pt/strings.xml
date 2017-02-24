@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hint_start">Aponte para o código.</string>
+    <string name="message_need_permission">A permissão da câmera é necessária para ler o código de barras.</string>
+</resources>
