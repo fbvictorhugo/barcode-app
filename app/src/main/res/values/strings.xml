@@ -1,6 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Barcode Reader</string>
 
     <string name="hint_start">Point to the code.</string>
-    <string name="message_need_permission">Camera permission is needed to read the barcode.</string>
+    <string name="message_need_camera_permission">To read a code, allow access to your camera</string>
+    <string name="button_allow">Allow</string>
 </resources>

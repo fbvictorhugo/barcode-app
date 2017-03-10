@@ -6,22 +6,27 @@
     <color name="moderate_violet">#673AB7</color>
     <color name="dark_violet">#512DA8</color>
     <color name="light_grayish_violet">#D1C4E9</color>
-    <color name="dark_cyan">#009688</color>
+    <color name="strong_cyan">#00BCD4</color>
     <color name="very_dark_gray__mostly_black">#212121</color>
     <color name="dark_gray">#757575</color>
     <color name="white">#FFFFFF</color>
     <color name="gray">#BDBDBD</color>
+    <color name="almost_white">#f5f5f5</color>
 
     <!-- Material design -->
 
     <color name="primary">@color/moderate_violet</color>
     <color name="primary_dark">@color/dark_violet</color>
     <color name="primary_light">@color/light_grayish_violet</color>
-    <color name="accent">@color/dark_cyan</color>
+    <color name="accent">@color/strong_cyan</color>
 
     <color name="primary_text">@color/very_dark_gray__mostly_black</color>
     <color name="secondary_text">@color/dark_gray</color>
     <color name="icons">@color/white</color>
     <color name="divider">@color/gray</color>
+
+    <!-- -->
+
+    <color name="app_background">@color/almost_white</color>
 
 </resources>
