@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="net.fbvictorhugo.barcode.MainActivity">
+    tools:context="net.fbvictorhugo.barcode.ui.MainActivity">
 
     <fragment
         android:id="@+id/headlines_fragment"

@@ -21,6 +21,7 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import net.fbvictorhugo.barcode.ActionUtils;
 import net.fbvictorhugo.barcode.BarcodeListener;
 import net.fbvictorhugo.barcode.R;
 
@@ -70,7 +71,7 @@ public class CameraFragment extends Fragment {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
 
-                checkPermissionAndStartCamera();
+                checkPermissionAndStartCamera(false);
             }
 
             @Override
@@ -110,7 +111,7 @@ public class CameraFragment extends Fragment {
             case MY_PERMISSIONS_REQUEST_USE_CAMERA: {
 
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    checkPermissionAndStartCamera();
+                    checkPermissionAndStartCamera(false);
                 } else {
                     showMessageNeedPermission(true);
                 }
@@ -135,12 +136,12 @@ public class CameraFragment extends Fragment {
         mButtonPermision.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkPermissionAndStartCamera();
+                checkPermissionAndStartCamera(true);
             }
         });
     }
 
-    private void checkPermissionAndStartCamera() {
+    private void checkPermissionAndStartCamera(final boolean userRequest) {
         try {
             if (checkSelfPermission(getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
 
@@ -149,14 +150,16 @@ public class CameraFragment extends Fragment {
 
             } else {
                 if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
-
                     showMessageNeedPermission(true);
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_USE_CAMERA);
 
                 } else {
-
-                    showMessageNeedPermission(true);
-                    requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_USE_CAMERA);
+                    if (userRequest) {
+                        ActionUtils.startApplicationDetailsSettings(getActivity());
+                    } else {
+                        showMessageNeedPermission(true);
+                        requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_USE_CAMERA);
+                    }
                 }
             }
         } catch (IOException e) {

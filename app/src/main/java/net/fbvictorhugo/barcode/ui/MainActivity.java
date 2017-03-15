@@ -1,9 +1,12 @@
-package net.fbvictorhugo.barcode;
+package net.fbvictorhugo.barcode.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import net.fbvictorhugo.barcode.BarcodeListener;
+import net.fbvictorhugo.barcode.R;
 
 public class MainActivity extends AppCompatActivity implements BarcodeListener {
 
