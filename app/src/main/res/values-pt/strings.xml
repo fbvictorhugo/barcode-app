@@ -5,4 +5,7 @@
     <string name="hint_start">Aponte para o código.</string>
     <string name="message_need_camera_permission">Para ler o código, permita acesso à sua câmera</string>
     <string name="button_allow">Permitir</string>
+    <string name="bottom_navigation_item_camera">Câmera</string>
+    <string name="bottom_navigation_item_history">Histórico</string>
+    <string name="bottom_navigation_item_file">Arquivo</string>
 </resources>

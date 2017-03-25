@@ -1,4 +1,4 @@
-package net.fbvictorhugo.barcode;
+package net.fbvictorhugo.barcode.util;
 
 import android.app.Activity;
 import android.content.Intent;

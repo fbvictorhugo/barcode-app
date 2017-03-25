@@ -21,8 +21,9 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import net.fbvictorhugo.barcode.ActionUtils;
+import net.fbvictorhugo.barcode.util.ActionUtils;
 import net.fbvictorhugo.barcode.BarcodeListener;
+import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
 
 import java.io.IOException;
@@ -95,7 +96,7 @@ public class CameraFragment extends Fragment {
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
-                    mBarcodeCallback.barcodeReaded(barcodes.valueAt(0).displayValue);
+                    mBarcodeCallback.barcodeReaded(new MyBarcode(barcodes.valueAt(0)));
                 }
             }
         });

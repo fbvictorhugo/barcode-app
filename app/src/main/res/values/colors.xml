@@ -29,4 +29,6 @@
 
     <color name="app_background">@color/almost_white</color>
 
+    <color name="bottom_navigation_unselected_color">#80ffffff</color>
+    <color name="bottom_navigation_selected_color">@color/white</color>
 </resources>
