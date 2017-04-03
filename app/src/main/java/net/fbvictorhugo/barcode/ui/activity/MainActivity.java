@@ -1,4 +1,4 @@
-package net.fbvictorhugo.barcode.ui;
+package net.fbvictorhugo.barcode.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,17 +7,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-import net.fbvictorhugo.barcode.BarcodeListener;
 import net.fbvictorhugo.barcode.R;
-import net.fbvictorhugo.barcode.model.MyBarcode;
+import net.fbvictorhugo.barcode.ui.fragment.CameraFragment;
+import net.fbvictorhugo.barcode.ui.fragment.HistoryFragment;
 
-public class MainActivity extends AppCompatActivity implements BarcodeListener {
+public class MainActivity extends AppCompatActivity {
 
-    private TextView mBarcodeTextInfo;
     private BottomNavigationView mBottomNavigationView;
-
     private CameraFragment mCameraFragment;
     private Fragment mFilesFragment;
     private HistoryFragment mHistoryFragment;
@@ -36,17 +33,6 @@ public class MainActivity extends AppCompatActivity implements BarcodeListener {
 
     }
 
-    @Override
-    public void barcodeReaded(final MyBarcode barcode) {
-
-        mBarcodeTextInfo.post(new Runnable() {
-            public void run() {
-                mBarcodeTextInfo.setText(barcode.getCode());
-            }
-        });
-
-    }
-
     @SuppressWarnings("EmptyMethod")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -55,10 +41,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeListener {
     }
 
     private void findViews() {
-
-        mBarcodeTextInfo = (TextView) findViewById(R.id.main_barcode_info);
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.main_bottom_navigation);
-
     }
 
     private void instanceFragments() {

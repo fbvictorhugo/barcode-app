@@ -1,4 +1,4 @@
-package net.fbvictorhugo.barcode.ui;
+package net.fbvictorhugo.barcode.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.fbvictorhugo.barcode.model.MyBarcode;
+import com.google.android.gms.vision.barcode.Barcode;
+
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.ui.BarcodeModelView;
 import net.fbvictorhugo.barcode.ui.adapter.HistoryAdapter;
 
 import java.util.ArrayList;
@@ -30,12 +32,13 @@ public class HistoryFragment extends Fragment {
         findViews(baseView);
 
         //TODO Lorem barcode
-        List<MyBarcode> barcodes = new ArrayList<>();
+        List<BarcodeModelView> barcodes = new ArrayList<>();
 
         for (int i = 0; i < 8; i++) {
-            MyBarcode barcode = new MyBarcode();
-            barcode.setCode("QR" + new Random().nextLong());
-            barcodes.add(barcode);
+            Barcode b = new Barcode();
+            b.displayValue = ("QR" + new Random().nextLong());
+            BarcodeModelView barcodeView = new BarcodeModelView(b);
+            barcodes.add(barcodeView);
         }
 
         HistoryAdapter adapter = new HistoryAdapter(barcodes, getContext());

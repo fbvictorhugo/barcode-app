@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.ui.BarcodeModelView;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ import java.util.List;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
     private final Context mContext;
-    private final List<MyBarcode> mData;
+    private final List<BarcodeModelView> mData;
 
-    public HistoryAdapter(List<MyBarcode> data, Context context) {
+    public HistoryAdapter(List<BarcodeModelView> data, Context context) {
         mData = data;
         mContext = context;
     }
@@ -35,7 +35,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.contentTextView.setText(mData.get(position).getCode());
+        holder.contentTextView.setText(mData.get(position).getBarcodeValue());
     }
 
     @Override

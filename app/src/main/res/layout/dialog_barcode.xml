@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              tools:background="@color/gray">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/dialog_code_button_copy"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_content_copy_black_24dp"
+            android:tint="@color/accent"/>
+
+        <ImageButton
+            android:id="@+id/dialog_code_button_share"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_share_black_24dp"
+            android:tint="@color/accent"/>
+
+        <ImageButton
+            android:id="@+id/dialog_code_button_custom_action"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:tint="@color/accent"
+            android:visibility="gone"
+            tools:src="@drawable/ic_more_vert_black_24dp"
+            tools:visibility="visible"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/dialog_code_button_ok"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/bottom_ok"/>
+
+</LinearLayout>

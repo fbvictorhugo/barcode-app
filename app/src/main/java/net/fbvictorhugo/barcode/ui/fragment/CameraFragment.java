@@ -1,7 +1,7 @@
-package net.fbvictorhugo.barcode.ui;
+package net.fbvictorhugo.barcode.ui.fragment;
 
 import android.Manifest;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,10 +21,9 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import net.fbvictorhugo.barcode.util.ActionUtils;
-import net.fbvictorhugo.barcode.BarcodeListener;
-import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.util.ActionUtils;
+import net.fbvictorhugo.barcode.util.Constants;
 
 import java.io.IOException;
 
@@ -38,22 +37,12 @@ public class CameraFragment extends Fragment {
 
     private static final int MY_PERMISSIONS_REQUEST_USE_CAMERA = 999;
 
-    private BarcodeListener mBarcodeCallback;
     private SurfaceView mSurfaceCameraView;
     private CameraSource mCameraSource;
     private BarcodeDetector mBarcodeDetector;
     private LinearLayout mLayoutPermision;
     private Button mButtonPermision;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            mBarcodeCallback = (BarcodeListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement BarcodeListener");
-        }
-    }
+    private boolean mDetectorLocked;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -95,8 +84,9 @@ public class CameraFragment extends Fragment {
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
-                if (barcodes.size() != 0) {
-                    mBarcodeCallback.barcodeReaded(new MyBarcode(barcodes.valueAt(0)));
+                if (!mDetectorLocked && barcodes.size() != 0) {
+                    mDetectorLocked = true;
+                    showBarcodeDialog(barcodes.valueAt(0));
                 }
             }
         });
@@ -104,6 +94,22 @@ public class CameraFragment extends Fragment {
         configureClickListeners();
 
         return baseView;
+    }
+
+    private void showBarcodeDialog(Barcode barcode) {
+        BarcodeDialogFragment dialogCode = new BarcodeDialogFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(Constants.KEY_BARCODE, barcode);
+        dialogCode.setArguments(bundle);
+        dialogCode.setDissmissListener(new BarcodeDialogFragment.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mDetectorLocked = false;
+            }
+        });
+
+        dialogCode.show(getFragmentManager(), BarcodeDialogFragment.TAG);
     }
 
     @Override

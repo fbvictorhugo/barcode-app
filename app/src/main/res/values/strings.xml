@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">QR Code Reader</string>
-
     <string name="hint_start">Point to the code.</string>
     <string name="message_need_camera_permission">To read a code, allow access to your camera</string>
     <string name="button_allow">Allow</string>
     <string name="bottom_navigation_item_camera">Camera</string>
     <string name="bottom_navigation_item_history">History</string>
     <string name="bottom_navigation_item_file">File</string>
+    <string name="bottom_ok">OK</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
 </resources>
