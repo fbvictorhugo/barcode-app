@@ -13,8 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.android.gms.vision.barcode.Barcode;
-
+import net.fbvictorhugo.barcode.MyBarcode;
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.ui.BarcodeModelView;
 import net.fbvictorhugo.barcode.util.ActionUtils;
@@ -38,7 +37,7 @@ public class BarcodeDialogFragment extends DialogFragment {
     public void setArguments(Bundle args) {
         super.setArguments(args);
 
-        Barcode barcode = args.getParcelable(Constants.KEY_BARCODE);
+        MyBarcode barcode = args.getParcelable(Constants.KEY_BARCODE);
         mBarcodeModelView = new BarcodeModelView(barcode);
     }
 

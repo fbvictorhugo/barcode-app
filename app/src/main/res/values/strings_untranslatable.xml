@@ -5,5 +5,6 @@
     <string name="barcode_qr_code" translatable="false">QR code</string>
     <string name="barcode_data_matrix" translatable="false">Data Matrix</string>
     <string name="barcode_aztex" translatable="false">Aztec Code</string>
+    <string name="barcode_undefined" translatable="false">Undefined</string>
 
 </resources>

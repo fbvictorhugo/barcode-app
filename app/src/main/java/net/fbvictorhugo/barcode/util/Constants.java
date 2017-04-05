@@ -5,5 +5,7 @@ package net.fbvictorhugo.barcode.util;
  */
 
 public class Constants {
+
     public static final String KEY_BARCODE = "barcode";
+
 }

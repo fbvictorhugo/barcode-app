@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:padding="8dp">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp">
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/content_text"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1"/>
+        android:textAppearance="?attr/textAppearanceListItem"
+        tools:text="Bacon ipsum dolor amet tri-tip pork short ribs andouille"/>
 
-    <ImageButton
-        android:id="@+id/history_item_action_button"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="48dp"
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/content_text_secondary"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_more_vert_black_24dp"
-        android:tint="@color/accent"/>
+        android:textColor="@color/secondary_text"
+        android:textSize="12sp"
+        tools:text="03/01/2017 12:00"/>
 
 </LinearLayout>

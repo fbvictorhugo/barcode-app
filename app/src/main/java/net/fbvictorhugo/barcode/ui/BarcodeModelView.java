@@ -6,8 +6,11 @@ import android.support.annotation.StringRes;
 
 import com.google.android.gms.vision.barcode.Barcode;
 
+import net.fbvictorhugo.barcode.MyBarcode;
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.util.ActionUtils;
+
+import java.text.DateFormat;
 
 /**
  * By fbvictorhugo on 31/03/17.
@@ -28,8 +31,9 @@ public class BarcodeModelView {
     @DrawableRes
     private int imageCustomAction;
     private boolean hasCustomAction;
+    private String dateReaded;
 
-    public BarcodeModelView(final Barcode barcode) {
+    public BarcodeModelView(final MyBarcode barcode) {
         if (barcode != null) {
             sms = barcode.sms;
             email = barcode.email;
@@ -39,6 +43,7 @@ public class BarcodeModelView {
             barcodeValue = barcode.displayValue;
             barcodeFormatName = getBarcodeTypeResValue(barcode.format);
             barcodeContentType = barcode.valueFormat;
+            dateReaded = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(barcode.getDateReading());
 
             configureForCustomAction();
         }
@@ -91,7 +96,7 @@ public class BarcodeModelView {
                 return R.string.barcode_data_matrix;
 
             default:
-                return 0;
+                return R.string.barcode_undefined;
         }
     }
 
@@ -137,4 +142,7 @@ public class BarcodeModelView {
         return hasCustomAction;
     }
 
+    public String getDateReaded() {
+        return dateReaded;
+    }
 }

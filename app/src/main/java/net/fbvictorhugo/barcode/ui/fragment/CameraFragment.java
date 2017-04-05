@@ -21,11 +21,13 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import net.fbvictorhugo.barcode.MyBarcode;
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.util.ActionUtils;
-import net.fbvictorhugo.barcode.util.Constants;
+import net.fbvictorhugo.barcode.util.DialogUtils;
 
 import java.io.IOException;
+import java.util.Date;
 
 import static android.support.v4.content.ContextCompat.checkSelfPermission;
 
@@ -86,7 +88,13 @@ public class CameraFragment extends Fragment {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (!mDetectorLocked && barcodes.size() != 0) {
                     mDetectorLocked = true;
-                    showBarcodeDialog(barcodes.valueAt(0));
+                    try {
+                        MyBarcode barcode = new MyBarcode(barcodes.valueAt(0));
+                        barcode.setDateReading(new Date());
+                        showBarcodeDialog(barcode);
+                    } catch (Exception e) {
+                        mDetectorLocked = false;
+                    }
                 }
             }
         });
@@ -96,19 +104,15 @@ public class CameraFragment extends Fragment {
         return baseView;
     }
 
-    private void showBarcodeDialog(Barcode barcode) {
-        BarcodeDialogFragment dialogCode = new BarcodeDialogFragment();
+    private void showBarcodeDialog(MyBarcode barcode) {
 
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(Constants.KEY_BARCODE, barcode);
-        dialogCode.setArguments(bundle);
+        BarcodeDialogFragment dialogCode = DialogUtils.createBarcodeDialog(barcode);
         dialogCode.setDissmissListener(new BarcodeDialogFragment.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
                 mDetectorLocked = false;
             }
         });
-
         dialogCode.show(getFragmentManager(), BarcodeDialogFragment.TAG);
     }
 

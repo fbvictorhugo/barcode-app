@@ -1,13 +1,13 @@
 package net.fbvictorhugo.barcode.ui.adapter;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
+import net.fbvictorhugo.barcode.MyBarcode;
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.ui.BarcodeModelView;
 
@@ -19,12 +19,11 @@ import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
-    private final Context mContext;
-    private final List<BarcodeModelView> mData;
+    private final List<MyBarcode> mData;
+    private OnItemClickListener onItemClickListener;
 
-    public HistoryAdapter(List<BarcodeModelView> data, Context context) {
+    public HistoryAdapter(List<MyBarcode> data) {
         mData = data;
-        mContext = context;
     }
 
     @Override
@@ -34,8 +33,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.contentTextView.setText(mData.get(position).getBarcodeValue());
+    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+
+        BarcodeModelView barcodeModelView = new BarcodeModelView(mData.get(holder.getAdapterPosition()));
+        holder.contentTextView.setText(barcodeModelView.getBarcodeValue());
+        holder.contentSecondaryTextView.setText(barcodeModelView.getDateReaded());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemClickListener.onClick(mData.get(position));
+            }
+        });
     }
 
     @Override
@@ -43,16 +52,27 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         return mData.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private final AppCompatTextView contentTextView;
-        private final ImageButton actionButton;
+        private final AppCompatTextView contentSecondaryTextView ;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             contentTextView = (AppCompatTextView) view.findViewById(R.id.content_text);
-            actionButton = (ImageButton) view.findViewById(R.id.history_item_action_button);
+            contentSecondaryTextView = (AppCompatTextView) view.findViewById(R.id.content_text_secondary);
         }
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        onItemClickListener = listener;
+    }
+
+    public interface OnItemClickListener {
+
+        void onClick(MyBarcode barcode);
+
     }
 
 }
