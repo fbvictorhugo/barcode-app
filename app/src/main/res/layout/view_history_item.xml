@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,18 +14,35 @@
     android:paddingTop="8dp">
 
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/content_text"
+        android:id="@+id/history_item_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:textAppearance="?attr/textAppearanceListItem"
         tools:text="Bacon ipsum dolor amet tri-tip pork short ribs andouille"/>
 
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/content_text_secondary"
-        android:layout_width="match_parent"
+        android:id="@+id/history_item_date"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/history_item_content"
+        android:gravity="bottom"
         android:textColor="@color/secondary_text"
         android:textSize="12sp"
         tools:text="03/01/2017 12:00"/>
 
-</LinearLayout>
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/history_item_secondary_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/history_item_content"
+        android:layout_toStartOf="@id/history_item_date"
+        android:paddingEnd="16dp"
+        android:textColor="@color/secondary_text"
+        android:textSize="12sp"
+        android:visibility="gone"
+        tools:ignore="RtlSymmetry"
+        tools:text="QR Code - Arquivo"/>
+
+</RelativeLayout>

@@ -6,8 +6,9 @@ import android.support.annotation.StringRes;
 
 import com.google.android.gms.vision.barcode.Barcode;
 
-import net.fbvictorhugo.barcode.MyBarcode;
+import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.model.ReadingSource;
 import net.fbvictorhugo.barcode.util.ActionUtils;
 
 import java.text.DateFormat;
@@ -22,16 +23,17 @@ public class BarcodeModelView {
     private Barcode.Sms sms;
     private Barcode.GeoPoint geoPoint;
     private Barcode.Phone phone;
-
     private String barcodeValue;
+
     @StringRes
     private int barcodeFormatName;
     private int barcodeContentType;
-
     @DrawableRes
     private int imageCustomAction;
+
     private boolean hasCustomAction;
-    private String dateReaded;
+    private String readingDate;
+    private ReadingSource readingSource;
 
     public BarcodeModelView(final MyBarcode barcode) {
         if (barcode != null) {
@@ -43,8 +45,8 @@ public class BarcodeModelView {
             barcodeValue = barcode.displayValue;
             barcodeFormatName = getBarcodeTypeResValue(barcode.format);
             barcodeContentType = barcode.valueFormat;
-            dateReaded = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(barcode.getDateReading());
-
+            readingDate = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(barcode.getReadingDate());
+            readingSource = barcode.getReadingSource();
             configureForCustomAction();
         }
     }
@@ -142,7 +144,20 @@ public class BarcodeModelView {
         return hasCustomAction;
     }
 
-    public String getDateReaded() {
-        return dateReaded;
+    public String getReadingDate() {
+        return readingDate;
+    }
+
+    public int ReadingSourceWas() {
+        switch (readingSource) {
+            case CAMERA:
+                return R.string.camera_source;
+
+            case IMAGE:
+                return R.string.image_source;
+
+            default:
+                return 0;
+        }
     }
 }

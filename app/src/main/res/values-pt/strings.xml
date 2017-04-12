@@ -8,4 +8,10 @@
     <string name="bottom_navigation_item_file">Arquivo</string>
     <string name="bottom_ok">OK</string>
     <string name="copied_to_clipboard">Copiado para a área de transferência</string>
+    <string name="button_choose_image">Selecione uma imagem</string>
+    <string name="message_barcode_could_not_be_detected">Não foi possível detectar o Código de Barras</string>
+
+    <string name="camera_source">@string/bottom_navigation_item_camera</string>
+    <string name="image_source">@string/bottom_navigation_item_file</string>
+
 </resources>

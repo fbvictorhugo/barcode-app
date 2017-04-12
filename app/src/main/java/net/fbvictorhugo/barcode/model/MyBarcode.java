@@ -1,4 +1,4 @@
-package net.fbvictorhugo.barcode;
+package net.fbvictorhugo.barcode.model;
 
 import com.google.android.gms.vision.barcode.Barcode;
 
@@ -20,14 +20,23 @@ public class MyBarcode extends Barcode {
                 barcode.contactInfo, barcode.driverLicense);
     }
 
-    private Date dateReading;
+    private Date readingDate;
+    private ReadingSource readingSource;
 
-    public Date getDateReading() {
-        return dateReading;
+    public Date getReadingDate() {
+        return readingDate;
     }
 
-    public void setDateReading(Date dateReading) {
-        this.dateReading = dateReading;
+    public void setReadingDate(Date dateReading) {
+        this.readingDate = dateReading;
+    }
+
+    public ReadingSource getReadingSource() {
+        return readingSource;
+    }
+
+    public void setReadingSource(ReadingSource readingSource) {
+        this.readingSource = readingSource;
     }
 
 }

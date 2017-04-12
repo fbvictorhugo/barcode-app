@@ -9,8 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.fbvictorhugo.barcode.MyBarcode;
+import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.model.ReadingSource;
 import net.fbvictorhugo.barcode.ui.adapter.HistoryAdapter;
 import net.fbvictorhugo.barcode.util.DialogUtils;
 
@@ -35,11 +36,16 @@ public class HistoryFragment extends Fragment {
         //TODO Lorem barcode
         List<MyBarcode> barcodes = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            MyBarcode b = new MyBarcode();
-            b.displayValue = ("Bacon ipsum dolor at " + new Random().nextLong());
-            b.format = i;
-            b.setDateReading(new Date());
-            barcodes.add(b);
+            MyBarcode barcode = new MyBarcode();
+            barcode.displayValue = ("Bacon ipsum at " + new Random().nextLong());
+            barcode.format = i;
+            if (i % 2 == 0) {
+                barcode.setReadingSource(ReadingSource.CAMERA);
+            } else {
+                barcode.setReadingSource(ReadingSource.IMAGE);
+            }
+            barcode.setReadingDate(new Date());
+            barcodes.add(barcode);
         }
 
         HistoryAdapter adapter = new HistoryAdapter(barcodes);

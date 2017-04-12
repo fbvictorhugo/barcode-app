@@ -2,7 +2,7 @@ package net.fbvictorhugo.barcode.util;
 
 import android.os.Bundle;
 
-import net.fbvictorhugo.barcode.MyBarcode;
+import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.ui.fragment.BarcodeDialogFragment;
 
 /**

@@ -21,8 +21,9 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import net.fbvictorhugo.barcode.MyBarcode;
+import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.model.ReadingSource;
 import net.fbvictorhugo.barcode.util.ActionUtils;
 import net.fbvictorhugo.barcode.util.DialogUtils;
 
@@ -90,7 +91,8 @@ public class CameraFragment extends Fragment {
                     mDetectorLocked = true;
                     try {
                         MyBarcode barcode = new MyBarcode(barcodes.valueAt(0));
-                        barcode.setDateReading(new Date());
+                        barcode.setReadingSource(ReadingSource.CAMERA);
+                        barcode.setReadingDate(new Date());
                         showBarcodeDialog(barcode);
                     } catch (Exception e) {
                         mDetectorLocked = false;
@@ -102,18 +104,6 @@ public class CameraFragment extends Fragment {
         configureClickListeners();
 
         return baseView;
-    }
-
-    private void showBarcodeDialog(MyBarcode barcode) {
-
-        BarcodeDialogFragment dialogCode = DialogUtils.createBarcodeDialog(barcode);
-        dialogCode.setDissmissListener(new BarcodeDialogFragment.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                mDetectorLocked = false;
-            }
-        });
-        dialogCode.show(getFragmentManager(), BarcodeDialogFragment.TAG);
     }
 
     @Override
@@ -176,6 +166,18 @@ public class CameraFragment extends Fragment {
         } catch (IOException e) {
             Log.e("CAMERA SOURCE", e.getMessage());
         }
+    }
+
+    private void showBarcodeDialog(MyBarcode barcode) {
+
+        BarcodeDialogFragment dialogCode = DialogUtils.createBarcodeDialog(barcode);
+        dialogCode.setDissmissListener(new BarcodeDialogFragment.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mDetectorLocked = false;
+            }
+        });
+        dialogCode.show(getFragmentManager(), BarcodeDialogFragment.TAG);
     }
 
     private void showMessageNeedPermission(boolean show) {

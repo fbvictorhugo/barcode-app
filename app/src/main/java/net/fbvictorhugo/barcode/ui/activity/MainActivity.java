@@ -3,20 +3,20 @@ package net.fbvictorhugo.barcode.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.ui.fragment.CameraFragment;
+import net.fbvictorhugo.barcode.ui.fragment.FileFragment;
 import net.fbvictorhugo.barcode.ui.fragment.HistoryFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView mBottomNavigationView;
     private CameraFragment mCameraFragment;
-    private Fragment mFilesFragment;
+    private FileFragment mFilesFragment;
     private HistoryFragment mHistoryFragment;
 
     @Override
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private void instanceFragments() {
 
         mCameraFragment = new CameraFragment();
-        mFilesFragment = new Fragment();
+        mFilesFragment = new FileFragment();
         mHistoryFragment = new HistoryFragment();
 
     }

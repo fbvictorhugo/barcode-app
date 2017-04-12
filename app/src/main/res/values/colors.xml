@@ -31,4 +31,5 @@
 
     <color name="bottom_navigation_unselected_color">#80ffffff</color>
     <color name="bottom_navigation_selected_color">@color/white</color>
+    <color name="overlay">#80000000</color>
 </resources>

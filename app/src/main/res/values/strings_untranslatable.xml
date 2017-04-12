@@ -6,5 +6,6 @@
     <string name="barcode_data_matrix" translatable="false">Data Matrix</string>
     <string name="barcode_aztex" translatable="false">Aztec Code</string>
     <string name="barcode_undefined" translatable="false">Undefined</string>
+    <string name="undefined_source" translatable="false">Undefined</string>
 
 </resources>
