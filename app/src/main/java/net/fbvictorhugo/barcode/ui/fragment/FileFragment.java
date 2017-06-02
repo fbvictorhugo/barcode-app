@@ -25,9 +25,11 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.datasource.DatabaseHelper;
+import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.model.ReadingSource;
+import net.fbvictorhugo.barcode.util.Constants;
 import net.fbvictorhugo.barcode.util.DialogUtils;
 
 import java.io.FileNotFoundException;
@@ -58,8 +60,7 @@ public class FileFragment extends Fragment {
         configureClickListeners();
 
         mBarcodeDetector = new BarcodeDetector.Builder(getContext())
-                .setBarcodeFormats(Barcode.QR_CODE | Barcode.AZTEC | Barcode.DATA_MATRIX)
-                .build();
+                .setBarcodeFormats(Constants.SUPPORTED_FORMATS).build();
 
         return baseView;
     }
@@ -85,7 +86,7 @@ public class FileFragment extends Fragment {
                             final MyBarcode barcode = new MyBarcode(barcodes.valueAt(0));
                             barcode.setReadingSource(ReadingSource.IMAGE);
                             barcode.setReadingDate(new Date());
-
+                            new DatabaseHelper(getContext()).saveBarcode(barcode);
                             drawImageAndOverlay(barcode);
 
                             mImageView.setOnClickListener(new View.OnClickListener() {

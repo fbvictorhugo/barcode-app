@@ -13,5 +13,7 @@
 
     <string name="camera_source">@string/bottom_navigation_item_camera</string>
     <string name="image_source">@string/bottom_navigation_item_file</string>
+    <string name="menu_action_clear">Apagar histórico</string>
+    <string name="message_hostory_clear">Histórico apagado</string>
 
 </resources>

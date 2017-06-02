@@ -11,6 +11,7 @@ import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.ui.BarcodeModelView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
-    private final List<MyBarcode> mData;
+    private List<MyBarcode> mData;
     private OnItemClickListener onItemClickListener;
 
     public HistoryAdapter(List<MyBarcode> data) {
@@ -51,6 +52,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    public void clear() {
+        mData = new ArrayList<>();
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

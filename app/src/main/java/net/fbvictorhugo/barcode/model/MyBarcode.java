@@ -1,6 +1,8 @@
 package net.fbvictorhugo.barcode.model;
 
 import com.google.android.gms.vision.barcode.Barcode;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Date;
 
@@ -20,6 +22,11 @@ public class MyBarcode extends Barcode {
                 barcode.contactInfo, barcode.driverLicense);
     }
 
+    public static MyBarcode getInstance(String json) {
+        Gson gson = new GsonBuilder().create();
+        return gson.fromJson(json, MyBarcode.class);
+    }
+
     private Date readingDate;
     private ReadingSource readingSource;
 
@@ -37,6 +44,11 @@ public class MyBarcode extends Barcode {
 
     public void setReadingSource(ReadingSource readingSource) {
         this.readingSource = readingSource;
+    }
+
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
 
 }

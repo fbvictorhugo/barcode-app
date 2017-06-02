@@ -8,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.ui.BarcodeModelView;
 import net.fbvictorhugo.barcode.ui.fragment.CameraFragment;
 import net.fbvictorhugo.barcode.ui.fragment.FileFragment;
 import net.fbvictorhugo.barcode.ui.fragment.HistoryFragment;
+import net.fbvictorhugo.barcode.util.Constants;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +33,18 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_fragment_container, mCameraFragment).commit();
 
+        if (getSupportActionBar() != null) {
+            int[] formats = Constants.SUPPORTED_FORMATS_ARR;
+            String subtitle = "";
+
+            for (int i = 0; i < formats.length; i++) {
+                subtitle += getBarcodeTypeLabel(formats[i]);
+                if (i < formats.length - 1) {
+                    subtitle += " | ";
+                }
+            }
+            getSupportActionBar().setSubtitle(subtitle);
+        }
     }
 
     @SuppressWarnings("EmptyMethod")
@@ -85,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
                 transaction.commit();
                 break;
         }
+    }
+
+    String getBarcodeTypeLabel(final int barcodeType) {
+        return getString(BarcodeModelView.getBarcodeTypeResValue(barcodeType));
     }
 
 }

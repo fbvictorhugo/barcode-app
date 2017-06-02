@@ -21,10 +21,12 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.datasource.DatabaseHelper;
+import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.model.ReadingSource;
 import net.fbvictorhugo.barcode.util.ActionUtils;
+import net.fbvictorhugo.barcode.util.Constants;
 import net.fbvictorhugo.barcode.util.DialogUtils;
 
 import java.io.IOException;
@@ -53,8 +55,7 @@ public class CameraFragment extends Fragment {
         findViews(baseView);
 
         mBarcodeDetector = new BarcodeDetector.Builder(getContext())
-                .setBarcodeFormats(Barcode.QR_CODE | Barcode.AZTEC | Barcode.DATA_MATRIX)
-                .build();
+                .setBarcodeFormats(Constants.SUPPORTED_FORMATS).build();
 
         mCameraSource = new CameraSource.Builder(getContext(), mBarcodeDetector)
                 .setAutoFocusEnabled(true)
@@ -93,6 +94,7 @@ public class CameraFragment extends Fragment {
                         MyBarcode barcode = new MyBarcode(barcodes.valueAt(0));
                         barcode.setReadingSource(ReadingSource.CAMERA);
                         barcode.setReadingDate(new Date());
+                        new DatabaseHelper(getContext()).saveBarcode(barcode);
                         showBarcodeDialog(barcode);
                     } catch (Exception e) {
                         mDetectorLocked = false;

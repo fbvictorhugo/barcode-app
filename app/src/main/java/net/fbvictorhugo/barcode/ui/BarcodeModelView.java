@@ -85,7 +85,7 @@ public class BarcodeModelView {
         }
     }
 
-    private int getBarcodeTypeResValue(int format) {
+    public static int getBarcodeTypeResValue(int format) {
 
         switch (format) {
             case Barcode.QR_CODE:
