@@ -3,6 +3,7 @@ package net.fbvictorhugo.barcode.ui.fragment;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -25,11 +26,13 @@ import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.datasource.DatabaseHelper;
 import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.model.ReadingSource;
+import net.fbvictorhugo.barcode.ui.ToggleImageButton;
 import net.fbvictorhugo.barcode.util.ActionUtils;
 import net.fbvictorhugo.barcode.util.Constants;
 import net.fbvictorhugo.barcode.util.DialogUtils;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Date;
 
 import static android.support.v4.content.ContextCompat.checkSelfPermission;
@@ -47,6 +50,7 @@ public class CameraFragment extends Fragment {
     private BarcodeDetector mBarcodeDetector;
     private LinearLayout mLayoutPermision;
     private Button mButtonPermision;
+    private ToggleImageButton mButtonFlash;
     private boolean mDetectorLocked;
 
     @Override
@@ -133,6 +137,7 @@ public class CameraFragment extends Fragment {
         mSurfaceCameraView = (SurfaceView) baseView.findViewById(R.id.fragment_camera_surfaceview);
         mLayoutPermision = (LinearLayout) baseView.findViewById(R.id.fragment_camera_layout_permision);
         mButtonPermision = (Button) baseView.findViewById(R.id.fragment_camera_button_permision);
+        mButtonFlash = (ToggleImageButton) baseView.findViewById(R.id.fragment_camera_button_flash);
     }
 
     private void configureClickListeners() {
@@ -140,6 +145,13 @@ public class CameraFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 checkPermissionAndStartCamera(true);
+            }
+        });
+
+        mButtonFlash.setOnCheckedChangeListener(new ToggleImageButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(ToggleImageButton buttonView, boolean isChecked) {
+                turnFlash(isChecked);
             }
         });
     }
@@ -185,11 +197,49 @@ public class CameraFragment extends Fragment {
     private void showMessageNeedPermission(boolean show) {
         if (show) {
             mSurfaceCameraView.setVisibility(View.INVISIBLE);
+            mButtonFlash.setVisibility(View.INVISIBLE);
             mLayoutPermision.setVisibility(View.VISIBLE);
         } else {
             mLayoutPermision.setVisibility(View.GONE);
             mSurfaceCameraView.setVisibility(View.VISIBLE);
+            mButtonFlash.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Deprecated
+    private void turnFlash(boolean on) {
+        Camera camera = getCamera(mCameraSource);
+        if (camera != null) {
+            try {
+                Camera.Parameters param = camera.getParameters();
+                param.setFlashMode(on ? Camera.Parameters.FLASH_MODE_TORCH : Camera.Parameters.FLASH_MODE_OFF);
+                camera.setParameters(param);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Deprecated
+    private static Camera getCamera(@NonNull CameraSource cameraSource) {
+        Field[] declaredFields = CameraSource.class.getDeclaredFields();
+
+        for (Field field : declaredFields) {
+            if (field.getType() == Camera.class) {
+                field.setAccessible(true);
+                try {
+                    Camera camera = (Camera) field.get(cameraSource);
+                    if (camera != null) {
+                        return camera;
+                    }
+                    return null;
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+        return null;
     }
 
 }

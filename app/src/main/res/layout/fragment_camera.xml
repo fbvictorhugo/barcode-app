@@ -11,6 +11,18 @@
         android:layout_height="match_parent"
         tools:visibility="invisible"/>
 
+    <net.fbvictorhugo.barcode.ui.ToggleImageButton
+        android:id="@+id/fragment_camera_button_flash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_margin="8dp"
+        android:background="@drawable/button_flash"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
     <LinearLayout
         android:id="@+id/fragment_camera_layout_permision"
         android:layout_width="match_parent"
