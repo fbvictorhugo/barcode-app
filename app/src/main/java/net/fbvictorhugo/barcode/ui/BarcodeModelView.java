@@ -6,8 +6,8 @@ import android.support.annotation.StringRes;
 
 import com.google.android.gms.vision.barcode.Barcode;
 
-import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.model.ReadingSource;
 import net.fbvictorhugo.barcode.util.ActionUtils;
 
@@ -148,7 +148,7 @@ public class BarcodeModelView {
         return readingDate;
     }
 
-    public int ReadingSourceWas() {
+    public int readingSourceWas() {
         switch (readingSource) {
             case CAMERA:
                 return R.string.camera_source;
@@ -158,6 +158,23 @@ public class BarcodeModelView {
 
             default:
                 return 0;
+        }
+    }
+
+    public int getBarcodeContentTypeResValue() {
+        switch (barcodeContentType) {
+            case Barcode.EMAIL:
+                return R.string.content_type_email;
+            case Barcode.URL:
+                return R.string.content_type_url;
+            case Barcode.PHONE:
+                return R.string.content_type_phone;
+            case Barcode.SMS:
+                return R.string.content_type_sms;
+            case Barcode.GEO:
+                return R.string.content_type_geo;
+            default:
+                return R.string.content_type_text;
         }
     }
 }

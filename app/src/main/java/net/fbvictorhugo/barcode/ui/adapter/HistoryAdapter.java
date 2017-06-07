@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.R;
+import net.fbvictorhugo.barcode.model.MyBarcode;
 import net.fbvictorhugo.barcode.ui.BarcodeModelView;
 
 import java.util.ArrayList;
@@ -39,8 +39,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         BarcodeModelView barcodeModelView = new BarcodeModelView(mData.get(holder.getAdapterPosition()));
         holder.contentTextView.setText(barcodeModelView.getBarcodeValue());
         holder.dateTextView.setText(barcodeModelView.getReadingDate());
-        holder.contentSecondaryTextView.setText(barcodeModelView.ReadingSourceWas());
-
+        holder.contentSecondaryTextView.setText(barcodeModelView.getBarcodeContentTypeResValue());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,12 +60,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        private final AppCompatTextView headerTextView;
         private final AppCompatTextView contentTextView;
         private final AppCompatTextView dateTextView;
         private final AppCompatTextView contentSecondaryTextView;
 
         ViewHolder(View view) {
             super(view);
+            headerTextView = (AppCompatTextView) view.findViewById(R.id.history_item_header);
             contentTextView = (AppCompatTextView) view.findViewById(R.id.history_item_content);
             dateTextView = (AppCompatTextView) view.findViewById(R.id.history_item_date);
             contentSecondaryTextView = (AppCompatTextView) view.findViewById(R.id.history_item_secondary_content);

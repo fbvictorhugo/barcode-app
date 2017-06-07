@@ -16,4 +16,10 @@
     <string name="menu_action_clear">Apagar histórico</string>
     <string name="message_hostory_clear">Histórico apagado</string>
 
+    <string name="content_type_email">Email</string>
+    <string name="content_type_url">URL</string>
+    <string name="content_type_phone">Telefone</string>
+    <string name="content_type_sms">SMS</string>
+    <string name="content_type_geo">Geolocalização</string>
+    <string name="content_type_text">Texto</string>
 </resources>

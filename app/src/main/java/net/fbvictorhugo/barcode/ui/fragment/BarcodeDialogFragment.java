@@ -45,7 +45,7 @@ public class BarcodeDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog dialogBuider = new AlertDialog.Builder(getActivity())
-                .setTitle(mBarcodeModelView.getBarcodeFormatName())
+                .setTitle(mBarcodeModelView.getBarcodeContentTypeResValue())
                 .setMessage(mBarcodeModelView.getBarcodeValue())
                 .create();
         setCancelable(false);
