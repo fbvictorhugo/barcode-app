@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.Frame;
@@ -44,6 +45,7 @@ public class FileFragment extends Fragment {
     private ImageView mImageView;
     private Button mButtonChoose;
     private BarcodeDetector mBarcodeDetector;
+    private TextView mTextViewInstructions;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,7 @@ public class FileFragment extends Fragment {
                         Frame frame = new Frame.Builder().setBitmap(selectedImage).build();
                         SparseArray<Barcode> barcodes = mBarcodeDetector.detect(frame);
                         mImageView.setImageBitmap(selectedImage);
+                        mTextViewInstructions.setVisibility(View.GONE);
 
                         if (barcodes.size() != 0) {
                             mImageView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.overlay));
@@ -113,6 +116,7 @@ public class FileFragment extends Fragment {
     private void findViews(View baseView) {
         mImageView = (ImageView) baseView.findViewById(R.id.fragment_file_image_placeholder);
         mButtonChoose = (Button) baseView.findViewById(R.id.fragment_file_button_choose);
+        mTextViewInstructions = (TextView) baseView.findViewById(R.id.fragment_file_text_instructions);
     }
 
     private void drawImageAndOverlay(MyBarcode barcode) {

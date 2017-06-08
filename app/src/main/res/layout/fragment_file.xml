@@ -1,26 +1,47 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center"
-              android:orientation="vertical"
-              tools:context="net.fbvictorhugo.barcode.ui.fragment.FileFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:context="net.fbvictorhugo.barcode.ui.fragment.FileFragment">
 
     <Button
         android:id="@+id/fragment_file_button_choose"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:minHeight="48dp"
         android:text="@string/button_choose_image"/>
 
-    <ImageView
-        android:id="@+id/fragment_file_image_placeholder"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@null"
-        tools:background="@color/overlay"/>
+        android:layout_above="@id/fragment_file_button_choose">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/fragment_file_text_instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:text="@string/message_select_photo_instructions"
+            android:textColor="@color/secondary_text"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/fragment_file_image_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            tools:background="@color/overlay"/>
+
+    </FrameLayout>
+</RelativeLayout>

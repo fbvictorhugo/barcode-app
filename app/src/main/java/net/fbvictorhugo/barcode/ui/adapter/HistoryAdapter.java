@@ -18,39 +18,72 @@ import java.util.List;
  * By fbvictorhugo on 16/03/17.
  */
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
+public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<MyBarcode> mData;
     private OnItemClickListener onItemClickListener;
+
+    private final int VIEW_EMPTY = 0;
+    private final int VIEW_HISTORY = 1;
 
     public HistoryAdapter(List<MyBarcode> data) {
         mData = data;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_history_item, parent, false);
-        return new ViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case VIEW_HISTORY:
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_history_item, parent, false);
+                return new ViewHolderHistory(view);
+
+            default:
+                View viewEmpty = LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_state, parent, false);
+                return new ViewHolderEmptyState(viewEmpty);
+        }
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+    public int getItemViewType(int position) {
+        if (mData.size() == 0) {
+            return VIEW_EMPTY;
+        } else {
+            return VIEW_HISTORY;
+        }
+    }
 
-        BarcodeModelView barcodeModelView = new BarcodeModelView(mData.get(holder.getAdapterPosition()));
-        holder.contentTextView.setText(barcodeModelView.getBarcodeValue());
-        holder.dateTextView.setText(barcodeModelView.getReadingDate());
-        holder.contentSecondaryTextView.setText(barcodeModelView.getBarcodeContentTypeResValue());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onItemClickListener.onClick(mData.get(position));
-            }
-        });
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+
+        switch (holder.getItemViewType()) {
+            case VIEW_EMPTY:
+                //
+                break;
+
+            case VIEW_HISTORY:
+                ViewHolderHistory viewHolder = (ViewHolderHistory) holder;
+
+                BarcodeModelView barcodeModelView = new BarcodeModelView(mData.get(holder.getAdapterPosition()));
+                viewHolder.contentTextView.setText(barcodeModelView.getBarcodeValue());
+                viewHolder.dateTextView.setText(barcodeModelView.getReadingDate());
+                viewHolder.contentSecondaryTextView.setText(barcodeModelView.getBarcodeContentTypeResValue());
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onItemClickListener.onClick(mData.get(position));
+                    }
+                });
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        if (mData.size() == 0) {
+            return 1; // woraround do show ViewHolderEmptyState
+        } else {
+            return mData.size();
+        }
     }
 
     public void clear() {
@@ -58,19 +91,24 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    private class ViewHolderHistory extends RecyclerView.ViewHolder {
 
-        private final AppCompatTextView headerTextView;
         private final AppCompatTextView contentTextView;
         private final AppCompatTextView dateTextView;
         private final AppCompatTextView contentSecondaryTextView;
 
-        ViewHolder(View view) {
+        ViewHolderHistory(View view) {
             super(view);
-            headerTextView = (AppCompatTextView) view.findViewById(R.id.history_item_header);
             contentTextView = (AppCompatTextView) view.findViewById(R.id.history_item_content);
             dateTextView = (AppCompatTextView) view.findViewById(R.id.history_item_date);
             contentSecondaryTextView = (AppCompatTextView) view.findViewById(R.id.history_item_secondary_content);
+        }
+    }
+
+    private class ViewHolderEmptyState extends RecyclerView.ViewHolder {
+
+        ViewHolderEmptyState(View view) {
+            super(view);
         }
     }
 

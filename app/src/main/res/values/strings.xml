@@ -8,7 +8,7 @@
     <string name="bottom_navigation_item_file">File</string>
     <string name="bottom_ok">OK</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="button_choose_image">Choose an image</string>
+    <string name="button_choose_image">Select a photo</string>
     <string name="message_barcode_could_not_be_detected">Barcode could not be detected</string>
 
     <string name="camera_source">@string/bottom_navigation_item_camera</string>
@@ -22,4 +22,8 @@
     <string name="content_type_sms">SMS</string>
     <string name="content_type_geo">Geolocation</string>
     <string name="content_type_text">Text</string>
+
+    <string name="title_empty_history">Empty history</string>
+    <string name="message_empty_history">Try reading a bar code with the camera or through an image.</string>
+    <string name="message_select_photo_instructions">Select a photo for the application to try to read the bar code contained in the image.</string>
 </resources>

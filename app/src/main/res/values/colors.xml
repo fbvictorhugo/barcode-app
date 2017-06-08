@@ -12,6 +12,8 @@
     <color name="white">#FFFFFF</color>
     <color name="gray">#BDBDBD</color>
     <color name="almost_white">#f5f5f5</color>
+    <color name="light_gray">#d5d5d5</color>
+
 
     <!-- Material design -->
 
@@ -32,4 +34,6 @@
     <color name="bottom_navigation_unselected_color">#80ffffff</color>
     <color name="bottom_navigation_selected_color">@color/white</color>
     <color name="overlay">#80000000</color>
+
+    <color name="weak_icon">@color/light_gray</color>
 </resources>
