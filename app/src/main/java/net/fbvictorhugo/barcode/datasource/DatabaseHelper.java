@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import net.fbvictorhugo.barcode.model.MyBarcode;
+import net.fbvictorhugo.barcode.util.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +20,7 @@ public class DatabaseHelper {
     private SharedPreferences mPreferences = null;
 
     public DatabaseHelper(Context context) {
-        mPreferences = context.getSharedPreferences("BARC0DE", Context.MODE_PRIVATE);
+        mPreferences = context.getSharedPreferences(Constants.PREFS_NAME, Context.MODE_PRIVATE);
     }
 
     private boolean saveBarcode(final ArrayList<MyBarcode> barcodes) {

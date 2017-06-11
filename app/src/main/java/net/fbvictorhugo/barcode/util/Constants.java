@@ -13,6 +13,7 @@ public class Constants {
     public static final int[] SUPPORTED_FORMATS_ARR = {Barcode.QR_CODE, Barcode.DATA_MATRIX, Barcode.AZTEC};
 
     public static final int SUPPORTED_FORMATS = intoBitmask();
+    public static final String PREFS_NAME = "BARC0DE";
 
     private static int intoBitmask() {
         int bit = 0;
@@ -21,4 +22,12 @@ public class Constants {
         }
         return bit;
     }
+
+    public static enum ReadingSource {
+
+        CAMERA,
+        IMAGE
+
+    }
+
 }

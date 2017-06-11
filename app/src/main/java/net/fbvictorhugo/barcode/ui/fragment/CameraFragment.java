@@ -25,7 +25,6 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.datasource.DatabaseHelper;
 import net.fbvictorhugo.barcode.model.MyBarcode;
-import net.fbvictorhugo.barcode.model.ReadingSource;
 import net.fbvictorhugo.barcode.ui.ToggleImageButton;
 import net.fbvictorhugo.barcode.util.ActionUtils;
 import net.fbvictorhugo.barcode.util.Constants;
@@ -96,7 +95,7 @@ public class CameraFragment extends Fragment {
                     mDetectorLocked = true;
                     try {
                         MyBarcode barcode = new MyBarcode(barcodes.valueAt(0));
-                        barcode.setReadingSource(ReadingSource.CAMERA);
+                        barcode.setReadingSource(Constants.ReadingSource.CAMERA);
                         barcode.setReadingDate(new Date());
                         new DatabaseHelper(getContext()).saveBarcode(barcode);
                         showBarcodeDialog(barcode);

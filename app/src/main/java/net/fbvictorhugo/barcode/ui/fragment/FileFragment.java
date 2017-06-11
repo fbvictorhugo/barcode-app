@@ -29,7 +29,6 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.datasource.DatabaseHelper;
 import net.fbvictorhugo.barcode.model.MyBarcode;
-import net.fbvictorhugo.barcode.model.ReadingSource;
 import net.fbvictorhugo.barcode.util.Constants;
 import net.fbvictorhugo.barcode.util.DialogUtils;
 
@@ -87,7 +86,7 @@ public class FileFragment extends Fragment {
                         if (barcodes.size() != 0) {
                             mImageView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.overlay));
                             final MyBarcode barcode = new MyBarcode(barcodes.valueAt(0));
-                            barcode.setReadingSource(ReadingSource.IMAGE);
+                            barcode.setReadingSource(Constants.ReadingSource.IMAGE);
                             barcode.setReadingDate(new Date());
                             new DatabaseHelper(getContext()).saveBarcode(barcode);
                             drawImageAndOverlay(barcode);
@@ -98,7 +97,7 @@ public class FileFragment extends Fragment {
                                     showBarcodeDialog(barcode);
                                 }
                             });
-
+                            showBarcodeDialog(barcode);
                         } else {
                             mImageView.setOnClickListener(null);
                             Toast.makeText(getContext(), getString(R.string.message_barcode_could_not_be_detected), Toast.LENGTH_LONG).show();

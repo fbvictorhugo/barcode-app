@@ -8,8 +8,8 @@ import com.google.android.gms.vision.barcode.Barcode;
 
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.model.MyBarcode;
-import net.fbvictorhugo.barcode.model.ReadingSource;
 import net.fbvictorhugo.barcode.util.ActionUtils;
+import net.fbvictorhugo.barcode.util.Constants;
 
 import java.text.DateFormat;
 
@@ -33,7 +33,7 @@ public class BarcodeModelView {
 
     private boolean hasCustomAction;
     private String readingDate;
-    private ReadingSource readingSource;
+    private Constants.ReadingSource readingSource;
 
     public BarcodeModelView(final MyBarcode barcode) {
         if (barcode != null) {

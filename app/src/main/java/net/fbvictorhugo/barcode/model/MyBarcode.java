@@ -4,6 +4,8 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import net.fbvictorhugo.barcode.util.Constants;
+
 import java.util.Date;
 
 /**
@@ -28,7 +30,7 @@ public class MyBarcode extends Barcode {
     }
 
     private Date readingDate;
-    private ReadingSource readingSource;
+    private Constants.ReadingSource readingSource;
 
     public Date getReadingDate() {
         return readingDate;
@@ -38,11 +40,11 @@ public class MyBarcode extends Barcode {
         this.readingDate = dateReading;
     }
 
-    public ReadingSource getReadingSource() {
+    public Constants.ReadingSource getReadingSource() {
         return readingSource;
     }
 
-    public void setReadingSource(ReadingSource readingSource) {
+    public void setReadingSource(Constants.ReadingSource readingSource) {
         this.readingSource = readingSource;
     }
 
