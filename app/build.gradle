@@ -1,6 +1,23 @@
 apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
 
+
+def getVersionCode = { ->
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-list', '--count', 'HEAD'
+            standardOutput = stdout
+        }
+        return Integer.parseInt(stdout.toString().trim())
+    }
+    catch (ignored) {
+        return -1;
+    }
+}
+
+def GIT_VERSION_CODE = getVersionCode()
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -8,23 +25,18 @@ android {
         applicationId "net.fbvictorhugo.barcode"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 1
-        versionName "0.1"
+        versionCode GIT_VERSION_CODE
+        versionName "0.3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
             debuggable true
             applicationIdSuffix ".debug"
-            versionNameSuffix "-debug"
+            versionNameSuffix "-debug" + "-" + GIT_VERSION_CODE
             minifyEnabled false
             signingConfig android.signingConfigs.debug
-        }
-        beta {
-            debuggable true
-            versionNameSuffix "-beta"
-            minifyEnabled false
-            signingConfig android.signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
             minifyEnabled false
@@ -38,11 +50,14 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
 
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
-    compile 'com.google.android.gms:play-services-vision:10.2.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.google.android.gms:play-services-vision:10.2.6'
+    compile 'com.android.support:support-v4:25.3.1'
+    testCompile 'junit:junit:4.12'
+    compile 'com.google.code.gson:gson:2.7'
+
 }
 
 task checkstyle(type: Checkstyle) {

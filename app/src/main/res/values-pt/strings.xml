@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hint_start">Aponte para o código.</string>
-    <string name="message_need_permission">A permissão da câmera é necessária para ler o código de barras.</string>
+    <string name="message_need_camera_permission">Para ler o código, permita acesso à sua câmera</string>
+    <string name="button_allow">Permitir</string>
+    <string name="bottom_navigation_item_camera">Câmera</string>
+    <string name="bottom_navigation_item_history">Histórico</string>
+    <string name="bottom_navigation_item_file">Arquivo</string>
+    <string name="bottom_ok">OK</string>
+    <string name="copied_to_clipboard">Copiado para a área de transferência</string>
+    <string name="button_choose_image">Selecione uma foto</string>
+    <string name="message_barcode_could_not_be_detected">Não foi possível detectar o Código de Barras</string>
+
+    <string name="camera_source">@string/bottom_navigation_item_camera</string>
+    <string name="image_source">@string/bottom_navigation_item_file</string>
+    <string name="menu_action_clear">Apagar histórico</string>
+    <string name="message_hostory_clear">Histórico apagado</string>
+
+    <string name="content_type_email">Email</string>
+    <string name="content_type_url">URL</string>
+    <string name="content_type_phone">Telefone</string>
+    <string name="content_type_sms">SMS</string>
+    <string name="content_type_geo">Geolocalização</string>
+    <string name="content_type_text">Texto</string>
+
+    <string name="title_empty_history">Histórico vazio</string>
+    <string name="message_empty_history">Experimente ler um código de barras com a câmera ou através de uma imagem.</string>
+    <string name="message_select_photo_instructions">Selecione uma foto para que o aplicativo tente ler o código de barras contido na imagem.</string>
 </resources>
