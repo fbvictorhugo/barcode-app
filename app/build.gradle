@@ -26,7 +26,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 25
         versionCode GIT_VERSION_CODE
-        versionName "0.3.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
