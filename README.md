@@ -24,6 +24,5 @@ O diferencial deste app é a possibilidade de leitura por imagens já salvas no 
 Um MVP chegou a ser publicado na [Play Store](https://play.google.com/store/apps/dev?id=6194829043303383594). 
 
 ## Outras Considerações
-**Site:** Proposta era contruir um site no próprio GitHub IO, para gerar QR Codes de forma simples: https://fbvictorhugo.github.io/barcode-app/
-
-**Construção paralizada:** Emeados de 2017
+- **Site:** Proposta era contruir um site no próprio GitHub IO, para gerar QR Codes de forma simples: https://fbvictorhugo.github.io/barcode-app/
+- **Construção paralizada:** Emeados de 2017
