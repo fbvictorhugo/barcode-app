@@ -1,6 +1,7 @@
 # Barcode Reader ![ic_launcher](app/src/main/res/mipmap-mdpi/ic_launcher.png)
 O aplicativo foi construido para leitura de código de barras. Inicialmente a leitura de códigos 2D (QR Code, Data Matrix, Aztec Code) 
-Na época o diferencial deste app é a possibilidade de leitura por imagens já salvas no dispositivo e manter um histórico de leituras realizadas.
+
+O diferencial deste app é a possibilidade de leitura por imagens já salvas no dispositivo e manter um histórico de leituras realizadas.
 
 #### Telas
 | CameraFragment  | FileFragment| HistoryFragment | 
@@ -22,6 +23,7 @@ Na época o diferencial deste app é a possibilidade de leitura por imagens já 
 ### Publicação
 Um MVP chegou a ser publicado na [Play Store](https://play.google.com/store/apps/dev?id=6194829043303383594). 
 
-### Outras Considerações
+## Outras Considerações
 **Site:** Proposta era contruir um site no próprio GitHub IO, para gerar QR Codes de forma simples: https://fbvictorhugo.github.io/barcode-app/
+
 **Construção paralizada:** Emeados de 2017
