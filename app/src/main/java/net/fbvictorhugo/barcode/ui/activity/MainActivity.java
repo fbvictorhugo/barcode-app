@@ -1,11 +1,13 @@
 package net.fbvictorhugo.barcode.ui.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.ui.BarcodeModelView;
@@ -83,21 +85,16 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        switch (item.getItemId()) {
-            case R.id.action_nav_camera:
-                transaction.replace(R.id.main_fragment_container, mCameraFragment);
-                transaction.commit();
-                break;
-
-            case R.id.action_nav_file:
-                transaction.replace(R.id.main_fragment_container, mFilesFragment);
-                transaction.commit();
-                break;
-
-            case R.id.action_nav_history:
-                transaction.replace(R.id.main_fragment_container, mHistoryFragment);
-                transaction.commit();
-                break;
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_nav_camera) {
+            transaction.replace(R.id.main_fragment_container, mCameraFragment);
+            transaction.commit();
+        } else if (itemId == R.id.action_nav_file) {
+            transaction.replace(R.id.main_fragment_container, mFilesFragment);
+            transaction.commit();
+        } else if (itemId == R.id.action_nav_history) {
+            transaction.replace(R.id.main_fragment_container, mHistoryFragment);
+            transaction.commit();
         }
     }
 

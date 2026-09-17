@@ -1,6 +1,8 @@
 package net.fbvictorhugo.barcode.ui.fragment;
 
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,8 +13,6 @@ import android.graphics.Region;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +21,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -35,8 +38,6 @@ import net.fbvictorhugo.barcode.util.DialogUtils;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
-
-import static android.app.Activity.RESULT_OK;
 
 public class FileFragment extends Fragment {
 

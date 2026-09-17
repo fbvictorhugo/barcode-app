@@ -1,11 +1,12 @@
 package net.fbvictorhugo.barcode.ui.adapter;
 
 import android.annotation.SuppressLint;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import net.fbvictorhugo.barcode.R;
 import net.fbvictorhugo.barcode.model.MyBarcode;

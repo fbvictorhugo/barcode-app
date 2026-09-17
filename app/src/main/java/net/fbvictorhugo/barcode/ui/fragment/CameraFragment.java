@@ -1,12 +1,12 @@
 package net.fbvictorhugo.barcode.ui.fragment;
 
+import static androidx.core.content.ContextCompat.checkSelfPermission;
+
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -16,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -33,8 +36,6 @@ import net.fbvictorhugo.barcode.util.DialogUtils;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Date;
-
-import static android.support.v4.content.ContextCompat.checkSelfPermission;
 
 /**
  * By fbvictorhugo on 08/03/17.

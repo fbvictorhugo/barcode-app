@@ -19,9 +19,21 @@ public class MyBarcode extends Barcode {
     }
 
     public MyBarcode(Barcode barcode) {
-        super(1, barcode.format, barcode.rawValue, barcode.displayValue, barcode.valueFormat, barcode.cornerPoints,
-                barcode.email, barcode.phone, barcode.sms, barcode.wifi, barcode.url, barcode.geoPoint, barcode.calendarEvent,
-                barcode.contactInfo, barcode.driverLicense);
+        super();
+        this.format = barcode.format;
+        this.rawValue = barcode.rawValue;
+        this.displayValue = barcode.displayValue;
+        this.valueFormat = barcode.valueFormat;
+        this.cornerPoints = barcode.cornerPoints;
+        this.email = barcode.email;
+        this.phone = barcode.phone;
+        this.sms = barcode.sms;
+        this.wifi = barcode.wifi;
+        this.url = barcode.url;
+        this.geoPoint = barcode.geoPoint;
+        this.calendarEvent = barcode.calendarEvent;
+        this.contactInfo = barcode.contactInfo;
+        this.driverLicense = barcode.driverLicense;
     }
 
     public static MyBarcode getInstance(String json) {

@@ -13,7 +13,7 @@
     android:paddingStart="16dp"
     android:paddingTop="8dp">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/history_item_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:visibility="gone"
         tools:text="Bacon ipsum dolor"/>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/history_item_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         tools:ignore="RtlSymmetry"
         tools:text="Bacon ipsum dolor amet tri-tip pork short ribs andouille"/>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/history_item_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         android:textSize="12sp"
         tools:text="03/01/2017 12:00"/>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/history_item_secondary_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,9 +1,10 @@
 package net.fbvictorhugo.barcode.ui;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 import android.widget.Checkable;
+
+import androidx.appcompat.widget.AppCompatImageButton;
 
 public class ToggleImageButton extends AppCompatImageButton implements Checkable {
     private OnCheckedChangeListener onCheckedChangeListener;
